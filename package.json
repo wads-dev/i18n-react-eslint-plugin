@@ -1,0 +1,64 @@
+{
+  "name": "@wads.dev/i18n-react-eslint-plugin",
+  "version": "0.0.1",
+  "description": "ESLint rules that prevent untranslated user-facing strings in JavaScript, TypeScript and JSX.",
+  "license": "MIT",
+  "author": {
+    "name": "Wads.dev",
+    "url": "https://github.com/wads-dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wads-dev/i18n-react-eslint-plugin.git"
+  },
+  "homepage": "https://github.com/wads-dev/i18n-react-eslint-plugin#readme",
+  "bugs": {
+    "url": "https://github.com/wads-dev/i18n-react-eslint-plugin/issues"
+  },
+  "keywords": [
+    "eslint",
+    "eslintplugin",
+    "i18n",
+    "internationalization",
+    "jsx",
+    "react",
+    "react-native",
+    "translations"
+  ],
+  "type": "module",
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "check": "node --check src/plugin.cjs && node --check src/index.js",
+    "test": "node --test",
+    "lint": "eslint --no-config-lookup --rule 'no-unused-vars: error' src test",
+    "ci": "npm run check && npm run lint && npm test",
+    "verify:release": "npm run ci && npm pack --dry-run",
+    "prepack": "npm run ci",
+    "prepublishOnly": "npm run verify:release"
+  },
+  "main": "./src/plugin.cjs",
+  "module": "./src/index.js",
+  "exports": {
+    ".": {
+      "import": "./src/index.js",
+      "require": "./src/plugin.cjs"
+    }
+  },
+  "peerDependencies": {
+    "eslint": ">=8.57 <10"
+  },
+  "devDependencies": {
+    "@typescript-eslint/parser": "^8.64.0",
+    "eslint": "^9.39.5"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
